@@ -2,9 +2,19 @@ import org.json.JSONObject;
 
 
 import java.util.Scanner;
+
+/**
+ * the first thing shown in the program when we first run it.
+ * logIn or signUp
+ */
 public class Welcome {
     Scanner scanner = new Scanner(System.in);
 
+    /**
+     * if the user select is 1: login case
+     * if the user select is 2: signUp case
+     * @return a user to the server.
+     */
     public JSONObject getInformation() {
         int selected = scanner.nextInt();
         scanner.nextLine();

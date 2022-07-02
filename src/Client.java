@@ -7,12 +7,22 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 
+/**
+ * creating a client with a socket and a userName.
+ * input and output streams for sending and receiving data.
+ */
 public class Client implements Runnable {
     private Socket socket;
     private DataOutputStream outputStream;
     private DataInputStream input;
     private String userName;
 
+    /**
+     * client constructor.
+     * @param socket receives a socket,
+     * @param userName receives a userName.
+     * Trows IOException.
+     */
     public Client(Socket socket, String userName) {
         this.socket = socket;
         try {
@@ -25,6 +35,11 @@ public class Client implements Runnable {
         }
     }
 
+    /**
+     * while socket is connected, read message from console and parse it to json,
+     * and send it to server.
+     * Throws IOException.
+     */
     public void sendMessage() {
         try {
             Scanner scanner = new Scanner(System.in);
@@ -42,6 +57,10 @@ public class Client implements Runnable {
         }
     }
 
+    /**
+     * while socket is connected, read and print the message from socket.
+     * Throws IOException.
+     */
     @Override
     public void run() {
         while (socket.isConnected()) {
@@ -54,6 +73,10 @@ public class Client implements Runnable {
         }
     }
 
+    /**
+     * close socket, input stream and output stream.
+     * Throws IOException.
+     */
     private void CLoseSocket() {
         try {
             if (socket != null)
@@ -67,6 +90,12 @@ public class Client implements Runnable {
         }
     }
 
+    /**
+     * creates a new socket with ip: localHost and port: 2020
+     * creates a new client and a new thread.
+     * sending the information we got from user to the server.
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         Socket socket1 = new Socket("localHost", 2020);
         Welcome welcome = new Welcome();
